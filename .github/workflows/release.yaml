@@ -2,7 +2,7 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 jobs:
   release-bins:
     runs-on: ubuntu-latest
@@ -11,7 +11,7 @@ jobs:
       - run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV
       - uses: actions/setup-go@v2
         with:
-          go-version: 1.19
+          go-version: 1.20
       - run: go install github.com/golang/mock/mockgen@v1.6.0
       - uses: actions/setup-node@v2.4.0
       - name: Build Web Page
@@ -20,7 +20,7 @@ jobs:
         run: make release
       - uses: softprops/action-gh-release@v1
         with:
-          files: 'bin/*'
+          files: "bin/*"
           prerelease: ${{ contains(env.GIT_TAG, 'rc') }}
   release-docker-images:
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV
-      - run: if ! echo $GIT_TAG | grep "rc" >/dev/null; then DOCKER_TAGS=chigusa/bililive-go:$GIT_TAG,chigusa/bililive-go:latest; else DOCKER_TAGS=chigusa/bililive-go:$GIT_TAG; fi; echo "DOCKER_TAGS=$DOCKER_TAGS" >> $GITHUB_ENV
+      - run: if ! echo $GIT_TAG | grep "rc" >/dev/null; then DOCKER_TAGS=matyle/bililive-go:$GIT_TAG,matyle/bililive-go:latest; else DOCKER_TAGS=matyle/bililive-go:$GIT_TAG; fi; echo "DOCKER_TAGS=$DOCKER_TAGS" >> $GITHUB_ENV
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Docker Setup Buildx

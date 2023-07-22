@@ -67,14 +67,6 @@ github.com/hashicorp/errwrap
 # github.com/hashicorp/go-multierror v1.1.1
 ## explicit; go 1.13
 github.com/hashicorp/go-multierror
-# github.com/hr3lxphr6j/bililive-go v0.7.13
-## explicit; go 1.16
-github.com/hr3lxphr6j/bililive-go/src/configs
-github.com/hr3lxphr6j/bililive-go/src/instance
-github.com/hr3lxphr6j/bililive-go/src/interfaces
-github.com/hr3lxphr6j/bililive-go/src/live
-github.com/hr3lxphr6j/bililive-go/src/live/internal
-github.com/hr3lxphr6j/bililive-go/src/pkg/utils
 # github.com/hr3lxphr6j/requests v0.0.2
 ## explicit; go 1.14
 github.com/hr3lxphr6j/requests
@@ -160,6 +152,8 @@ github.com/onsi/ginkgo/v2/types
 ## explicit; go 1.13
 github.com/panjf2000/ants/v2
 github.com/panjf2000/ants/v2/internal/sync
+# github.com/pkg/errors v0.9.1
+## explicit
 # github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2
 ## explicit
 github.com/pmezard/go-difflib/difflib

@@ -13,7 +13,6 @@ require (
 	github.com/bluele/gcache v0.0.2
 	github.com/golang/mock v1.6.0
 	github.com/gorilla/mux v1.8.0
-	github.com/hr3lxphr6j/bililive-go v0.7.13
 	github.com/hr3lxphr6j/requests v0.0.2
 	github.com/imroc/req/v3 v3.37.2
 	github.com/lthibault/jitterbug v2.0.0+incompatible
@@ -58,6 +57,7 @@ require (
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/onsi/ginkgo/v2 v2.10.0 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/prometheus/client_model v0.3.0 // indirect
 	github.com/prometheus/common v0.42.0 // indirect

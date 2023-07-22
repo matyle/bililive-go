@@ -32,7 +32,7 @@ package() {
 
 for dist in $(go tool dist list); do
   case $dist in
-  linux/loong64 | android/* | ios/* | js/wasm )
+  linux/loong64 | android/* | ios/* | js/wasm|openbsd/mips64|plan9/*|solaris/amd64)
     continue
     ;;
   *) ;;

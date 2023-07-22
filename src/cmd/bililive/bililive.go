@@ -136,7 +136,9 @@ func main() {
 
 	//TODO:use manager interface
 	biliUps := upload.NewBiliUPLoads(inst.Config.BiliupConfigs, 2)
-	biliUps.Server(upload.RemoveFilesHandler)
+	go func() {
+		biliUps.Server(upload.RemoveFilesHandler)
+	}()
 	if err = metrics.NewCollector(ctx).Start(ctx); err != nil {
 		logger.Fatalf("failed to init metrics collector, error: %s", err)
 	}

@@ -12,7 +12,7 @@ github.com/Masterminds/semver
 # github.com/Masterminds/sprig v2.22.0+incompatible
 ## explicit
 github.com/Masterminds/sprig
-# github.com/alecthomas/kingpin v2.2.6+incompatible
+# github.com/alecthomas/kingpin v2.2.7-0.20180312062423-a39589180ebd+incompatible
 ## explicit
 github.com/alecthomas/kingpin
 # github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
@@ -34,7 +34,7 @@ github.com/bluele/gcache
 # github.com/cespare/xxhash/v2 v2.2.0
 ## explicit; go 1.11
 github.com/cespare/xxhash/v2
-# github.com/davecgh/go-spew v1.1.1
+# github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc
 ## explicit
 github.com/davecgh/go-spew/spew
 # github.com/gaukas/godicttls v0.0.3
@@ -67,6 +67,14 @@ github.com/hashicorp/errwrap
 # github.com/hashicorp/go-multierror v1.1.1
 ## explicit; go 1.13
 github.com/hashicorp/go-multierror
+# github.com/hr3lxphr6j/bililive-go v0.7.13
+## explicit; go 1.16
+github.com/hr3lxphr6j/bililive-go/src/configs
+github.com/hr3lxphr6j/bililive-go/src/instance
+github.com/hr3lxphr6j/bililive-go/src/interfaces
+github.com/hr3lxphr6j/bililive-go/src/live
+github.com/hr3lxphr6j/bililive-go/src/live/internal
+github.com/hr3lxphr6j/bililive-go/src/pkg/utils
 # github.com/hr3lxphr6j/requests v0.0.2
 ## explicit; go 1.14
 github.com/hr3lxphr6j/requests
@@ -152,7 +160,7 @@ github.com/onsi/ginkgo/v2/types
 ## explicit; go 1.13
 github.com/panjf2000/ants/v2
 github.com/panjf2000/ants/v2/internal/sync
-# github.com/pmezard/go-difflib v1.0.0
+# github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2
 ## explicit
 github.com/pmezard/go-difflib/difflib
 # github.com/prometheus/client_golang v1.16.0
@@ -217,7 +225,7 @@ github.com/robertkrimen/otto/registry
 github.com/robertkrimen/otto/token
 # github.com/rogpeppe/go-internal v1.11.0
 ## explicit; go 1.19
-# github.com/satori/go.uuid v1.2.0
+# github.com/satori/go.uuid v1.2.1-0.20181028125025-b2ce2384e17b
 ## explicit
 github.com/satori/go.uuid
 # github.com/schollz/progressbar/v3 v3.13.1

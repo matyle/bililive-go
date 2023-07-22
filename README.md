@@ -179,6 +179,7 @@ cookies:
       国内: https://golang.google.cn/dl/
     2)命令行运行 go 若控制台输出各类提示命令 则安装成功 输入 go version 确认版本
   3.安装 ffmpeg (以centos7为例)
+
     1) yum install -y epel-release rpm
     2) rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
     3) yum repolist

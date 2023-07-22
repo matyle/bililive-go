@@ -259,11 +259,18 @@ func (u *BiliUpload) uploadReleseFile(filePath string, upVideo *localVideo) erro
 	resp, err := u.client.R().SetQueryParams(map[string]string{
 		"csrf": u.csrf,
 	}).SetBodyJsonMarshal(addreq).Post("https://member.bilibili.com/x/vu/web/add/v3")
-	if err != nil {
-		u.log.Error("发布失败", zap.Error(err))
+	if err != nil || resp.StatusCode != 200 {
+		u.log.Error("发布失败", zap.Error(err), zap.String("resp", resp.String()))
 		return err
 	}
-	u.log.Debug("resp", zap.String("resp", resp.String()))
+	var res UploadResp
+	if err := json.Unmarshal([]byte(resp.String()), &res); err != nil {
+		u.log.Error("Unmarshal result error", zap.Error(err))
+	}
+
+	if res.Code != 0 {
+		u.log.Error("resp", zap.String("resp", resp.String()))
+	}
 	return nil
 }
 
@@ -294,6 +301,7 @@ func (u *BiliUpload) upload(upVideo *localVideo, file *os.File) error {
 		progressbar.OptionSetWidth(50),
 		progressbar.OptionShowIts(),
 	)
+	wg := &sync.WaitGroup{}
 	u.partChan = make(chan Part, u.chunks)
 	go func() {
 		for p := range u.partChan {
@@ -302,7 +310,6 @@ func (u *BiliUpload) upload(upVideo *localVideo, file *os.File) error {
 	}()
 	p, _ := ants.NewPool(u.threadNum)
 	defer p.Release()
-	wg := &sync.WaitGroup{}
 	for {
 		buf := make([]byte, upVideo.chunkSize)
 		size, err := file.Read(buf)
@@ -324,6 +331,7 @@ func (u *BiliUpload) upload(upVideo *localVideo, file *os.File) error {
 	}
 	wg.Wait()
 	close(u.partChan)
+	u.log.Debug("success part chan")
 	jsonString, _ := json.Marshal(&reqjson)
 	u.client.R().SetHeaders(map[string]string{
 		"Content-Type": "application/json",
@@ -380,6 +388,7 @@ func (u *BiliUpload) uploadPartWrapper(wg *sync.WaitGroup, chunk int, start, end
 				zap.Int("size", size),
 				zap.Int("start", start),
 				zap.Int("end", end))
+			return
 		}
 		u.partChan <- Part{
 			PartNumber: int64(chunk + 1),

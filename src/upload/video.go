@@ -137,6 +137,7 @@ func NewMediaFiles(path string) *MediaFiles {
 	return &MediaFiles{
 		folderPath:     path,
 		uploadingVideo: make(map[string]*localVideo, 64),
+		successVideo:   make(map[string]struct{}, 64),
 		log:            log,
 	}
 }

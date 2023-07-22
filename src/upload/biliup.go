@@ -75,3 +75,14 @@ type CoverInfo struct {
 		Url string `json:"url"`
 	} `json:"data"`
 }
+
+type UploadResp struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+	Ttl     int    `json:"ttl"`
+	Data    Data   `json:"data"`
+}
+type Data struct {
+	Aid  []string `json:"aid"`
+	Bvid string   `json:"bvid"`
+}

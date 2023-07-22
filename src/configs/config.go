@@ -71,7 +71,7 @@ type Config struct {
 	VideosPath string `yaml:"videos_path"` // upload vedio path
 }
 
-var defaultConfig = Config{
+var defaultConfig = &Config{
 	RPC:        defaultRPC,
 	Debug:      false,
 	Interval:   30,
@@ -107,7 +107,7 @@ var defaultConfig = Config{
 func NewConfig() *Config {
 	config := defaultConfig
 	config.liveRoomIndexCache = map[string]int{}
-	return &config
+	return config
 }
 
 // Verify will return an error when this config has problem.
@@ -177,7 +177,7 @@ func NewConfigWithBytes(b []byte) (*Config, error) {
 		return nil, err
 	}
 	config.RefreshLiveRoomIndexCache()
-	return &config, nil
+	return config, nil
 }
 
 func NewConfigWithFile(file string) (*Config, error) {

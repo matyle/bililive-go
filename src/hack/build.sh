@@ -10,6 +10,12 @@ _build() {
   target=$1
   bin_name=$2
   ld_flags=$3
+
+  if [ $(go env GOOS) = "openbsd" ] &&  [ $(go env GOARCH) = "mips64" ]; then
+    echo Skipping build for openbsd+mips64...
+    return
+  fi
+
   go build \
     -tags ${TAGS:-"release"} \
     -gcflags="${GCFLAGS:-""}" \

@@ -22,7 +22,7 @@ deploy:
   on:
     tags: true
 after_deploy:
-  - curl -fsSL https://get.docker.com | sh
+  - curl -fsSL registry.cn-hangzhou.aliyuncs.com | sh
   - echo '{"experimental":"enabled"}' | sudo tee /etc/docker/daemon.json
   - mkdir -p $HOME/.docker
   - echo '{"experimental":"enabled"}' | sudo tee $HOME/.docker/config.json

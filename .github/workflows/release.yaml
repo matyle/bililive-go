@@ -43,11 +43,9 @@ jobs:
       - name: Build the Docker image
         uses: docker/build-push-action@v4
         with:
-          add-hosts:${{ secrets.ALI_DOCKER_HUB_REGISTRY }}
+          add-hosts: ${{ secrets.ALI_DOCKER_HUB_REGISTRY }}
           file: Dockerfile
           build-args: tag=${{ env.GIT_TAG }}
           platforms: linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6
           push: true
-          tags: |
-            ${{ env.DOCKER_TAGS }}
-            registry.cn-hangzhou.aliyuncs.com/matyle/bililive-go:latest
+          tags: registry.cn-hangzhou.aliyuncs.com/matyle/bililive-go:latest

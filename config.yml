@@ -1,6 +1,6 @@
 rpc:
   enable: true
-  bind: 127.0.0.1:8080
+  bind: 0.0.0.0:8080
 debug: false
 interval: 20
 out_put_path: ./
@@ -30,7 +30,7 @@ on_record_finished:
   convert_to_mp4: false
   delete_flv_after_convert: false
 timeout_in_us: 60000000
-videos_path: /srv/bililive
+videos_path: /srv/bililive/
 biliup_configs:
   - user_name: "matyle1"
     cookie_path: /srv/bililive/cookie.json #必填

@@ -168,3 +168,5 @@ node_modules
 #vscode
 .vscode
 src/upload/test
+vendor
+Videos

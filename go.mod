@@ -19,6 +19,7 @@ require (
 	github.com/panjf2000/ants/v2 v2.8.1
 	github.com/prometheus/client_golang v1.16.0
 	github.com/robertkrimen/otto v0.2.1
+	github.com/robfig/cron v1.2.0
 	github.com/satori/go.uuid v1.2.1-0.20181028125025-b2ce2384e17b
 	github.com/schollz/progressbar/v3 v3.13.1
 	github.com/sirupsen/logrus v1.9.3

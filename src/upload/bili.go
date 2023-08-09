@@ -18,6 +18,7 @@ import (
 	"github.com/matyle/bililive-go/src/configs"
 	"github.com/matyle/bililive-go/src/pkg/zaplogger"
 	"github.com/panjf2000/ants/v2"
+	"github.com/robfig/cron"
 	"github.com/schollz/progressbar/v3"
 	"github.com/tidwall/gjson"
 	"go.uber.org/zap"
@@ -39,6 +40,7 @@ type BiliUpload struct {
 
 type BiliUploads struct {
 	BiliUploads []*BiliUpload
+	CronService *cron.Cron
 	Configs     []*configs.BiliupConfig
 	log         *zap.Logger
 	files       *MediaFiles
@@ -56,8 +58,12 @@ func NewBiliUPLoads(confs []*configs.BiliupConfig, threadNum int) *BiliUploads {
 		biliUploads = append(biliUploads, newBiliUPLoad(v, threadNum))
 	}
 
+	// cronService := cron.New(cron.(), cron.WithLocation(time.UTC), cron.WithParser(
+	// 	cron.NewParser(cron.Second|cron.Minute|cron.Hour|cron.Dom|cron.Month|cron.DowOptional|cron.Descriptor)))
+	cronService := cron.NewWithLocation(time.UTC)
 	return &BiliUploads{
 		BiliUploads: biliUploads,
+		CronService: cronService,
 		Configs:     confs,
 		files:       NewMediaFiles(configs.NewConfig().VideosPath),
 		log:         log,
@@ -68,14 +74,12 @@ func NewBiliUPLoads(confs []*configs.BiliupConfig, threadNum int) *BiliUploads {
 func (u *BiliUploads) Server(postUploadHandler func(*BiliUploads)) {
 	u.Upload(postUploadHandler)
 	// 定时执行
-	ticker := time.NewTimer(time.Hour * 24)
-	for {
-		select {
-		case <-ticker.C:
-			u.Upload(postUploadHandler)
-			ticker.Reset(time.Hour * 24)
-		}
-	}
+	cronSpec := "20 00 17 * * *" // 每天UTC 时间3点00分20秒 北京时间11点00分20执行
+	u.CronService.AddFunc(cronSpec, func() {
+		u.Upload(postUploadHandler)
+	})
+	u.CronService.Start()
+
 }
 
 // 上传视频成功之后，可以删除本地视频
